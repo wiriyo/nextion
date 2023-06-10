@@ -52,6 +52,7 @@ NexButton bt1 = NexButton(3, 3, "bt1");
 NexText textemp1 = NexText(4, 2, "texttemp1");
 NexText texhumi1 = NexText(4, 3, "texthumi1");
 
+
 //Page id 5 Progress BarXY-MD02
 NexText textemp2 = NexText(5, 4, "texttemp2");
 NexText texhumi2 = NexText(5, 5, "texthumi2");
@@ -62,19 +63,13 @@ NexProgressBar pghumi1 = NexProgressBar(5, 3, "pghumi1");
 NexGauge guagetemp1 = NexGauge(6, 3, "z0");
 NexGauge guagehumi1 = NexGauge(6, 4, "z1");
 
-//Page id 7 Guage LDR
-// NexGauge guageldr = NexGauge(7, 5, "guageldr");
-// NexText textldr = NexText(7, 6, "textldr");
 
 //Page id 8 Modbus Relay
 NexButton bt2 = NexButton(7, 2, "bt2");
 NexButton bt3 = NexButton(7, 3, "bt3");
 NexButton bt4 = NexButton(7, 4, "bt4");
 NexButton bt5 = NexButton(7, 5, "bt5");
-// NexButton bt6 = NexButton(7, 6, "bt6");
-// NexButton bt7 = NexButton(7, 7, "bt7");
-// NexButton bt8 = NexButton(7, 8, "bt8");
-// NexButton bt9 = NexButton(7, 9, "bt9");
+
 
 // Declare variable global
 bool statusbt0 = false;
@@ -84,10 +79,7 @@ bool statusbt2 = false;
 bool statusbt3 = false;
 bool statusbt4 = false;
 bool statusbt5 = false;
-// bool statusbt6 = false;
-// bool statusbt7 = false;
-// bool statusbt8 = false;
-// bool statusbt9 = false;
+
 // Register objects to the touch event list
 NexTouch *nex_listen_list[] = {
   &bt0,
@@ -97,10 +89,7 @@ NexTouch *nex_listen_list[] = {
   &bt3,
   &bt4,
   &bt5,
-  // &bt6,
-  // &bt7,
-  // &bt8,
-  // &bt9,
+
   NULL
 };
 //=========Nextion Library and Object==========//
@@ -156,52 +145,6 @@ void bt1PushCallback(void *ptr) {
     statusbt1 = false;
   }
 }
-//=================ON,OFF Relay2================//
-
-// ///=================Modbus-Master================//
-// #include <ModbusMaster.h>
-// #define RXD2 16
-// #define TXD2 17
-// // instantiate ModbusMaster object
-// ModbusMaster node1;  //Serial2 SlaveID1 XY-MD02
-// float humi1 = 0.0f;
-// float temp1 = 0.0f;
-// // instantiate ModbusMaster object
-// ModbusMaster node2;   //Slave ID2 Modbus RTU Relay
-// int8_t pool_size1;    //Pool size for Modbus Write command
-
-// //=================Modbus-Master================//
-
-//=================SimpleTimer==================//
-// #include <SimpleTimer.h>{
-// SimpleTimer timer;
-// }
-//=================SimpleTimer==================//
-
-// //================ON,OFF Relay1=================//
-// void bt0PushCallback(void *ptr) {
-//   if (statusbt0 == false) {
-//     digitalWrite(sw1, HIGH);
-//     statusbt0 = true;
-//   } else if (statusbt0 == true) {
-//     digitalWrite(sw1, LOW);
-//     statusbt0 = false;
-//   }
-// }
-// //================ON,OFF Relay1=================//
-
-// //=================ON,OFF Relay2================//
-// void bt1PushCallback(void *ptr) {
-//   if (statusbt1 == false) {
-//     digitalWrite(sw2, HIGH);
-//     statusbt1 = true;
-//   } else {
-//     digitalWrite(sw2, LOW);
-//     statusbt1 = false;
-//   }
-// }
-// //=================ON,OFF Relay2================//
-
 
 //==========Modbus Relay============//
 //==========ON,OFF MRelay1==========//
@@ -268,69 +211,7 @@ void bt5PushCallback(void *ptr) {
 }
 //==========ON,OFF MRelay4==========//
 
-//==========ON,OFF MRelay5==========//
-// void bt6PushCallback(void *ptr) {
-//   if (statusbt6 == false) {
-//     pool_size1 = node2.writeSingleRegister(0x05,0x0100);
-//     //relayControl_modbusRTU(2, 5, 1);
-//     //digitalWrite(sw1, LOW);
-//     statusbt6 = true;
-//   } else if (statusbt6 == true) {
-//     pool_size1 = node2.writeSingleRegister(0x05,0x0200);
-//     //relayControl_modbusRTU(2, 5, 0);
-//     //digitalWrite(sw1, HIGH);
-//     statusbt6 = false;
-//   }
-// }
-//==========ON,OFF MRelay5==========//
 
-// //==========ON,OFF MRelay6==========//
-// void bt7PushCallback(void *ptr) {
-//   if (statusbt7 == false) {
-//     pool_size1 = node2.writeSingleRegister(0x06,0x0100);
-//     //relayControl_modbusRTU(2, 6, 1);
-//     //digitalWrite(sw1, LOW);
-//     statusbt7 = true;
-//   } else if (statusbt7 == true) {
-//     pool_size1 = node2.writeSingleRegister(0x06,0x0200);
-//     //relayControl_modbusRTU(2, 6, 0);
-//     //digitalWrite(sw1, HIGH);
-//     statusbt7 = false;
-//   }
-// }
-// //==========ON,OFF MRelay6==========//
-
-// //==========ON,OFF MRelay7==========//
-// void bt8PushCallback(void *ptr) {
-//   if (statusbt8 == false) {
-//     pool_size1 = node2.writeSingleRegister(0x07,0x0100);
-//     //relayControl_modbusRTU(2, 7, 1);
-//     //digitalWrite(sw1, LOW);
-//     statusbt8 = true;
-//   } else if (statusbt8 == true) {
-//     pool_size1 = node2.writeSingleRegister(0x07,0x0200);
-//     //relayControl_modbusRTU(2, 7, 0);
-//     //digitalWrite(sw1, HIGH);
-//     statusbt8 = false;
-//   }
-// }
-// //==========ON,OFF MRelay7==========//
-
-// //==========ON,OFF MRelay8==========//
-// void bt9PushCallback(void *ptr) {
-//   if (statusbt9 == false) {
-//     pool_size1 = node2.writeSingleRegister(0x08,0x0100);
-//     //relayControl_modbusRTU(2, 8, 1);
-//     //digitalWrite(sw1, LOW);
-//     statusbt9 = true;
-//   } else if (statusbt9 == true) {
-//     pool_size1 = node2.writeSingleRegister(0x08,0x0200);
-//     //relayControl_modbusRTU(2, 8, 0);
-//     //digitalWrite(sw1, HIGH);
-//     statusbt9 = false;
-//   }
-// }
-//==========ON,OFF MRelay8==========//
 //==========Modbus Relay============//
 
 //==============Wi-Fi Connection================//
@@ -368,10 +249,7 @@ void setup() {
   bt3.attachPush(bt3PushCallback, &bt3);
   bt4.attachPush(bt4PushCallback, &bt4);
   bt5.attachPush(bt5PushCallback, &bt5);
-  // bt6.attachPush(bt6PushCallback, &bt6);
-  // bt7.attachPush(bt7PushCallback, &bt7);
-  // bt8.attachPush(bt8PushCallback, &bt8);
-  // bt9.attachPush(bt9PushCallback, &bt9);
+
 
   // Set IO pinMode for relay
   pinMode(sw1, OUTPUT);
@@ -387,7 +265,6 @@ void setup() {
   Serial.println(WiFi.RSSI());
 
   timer.setInterval(20000L, xymdtoNex);          //อ่านค่าเซ็นเซอร์และส่งไปยังจอ Nextion ทุกๆ 5 วินาที
-  // timer.setInterval(5000L, sendldrtoNex);       //อ่านค่าเซ็นเซอร์และส่งไปยังจอ Nextion ทุกๆ 5 วินาที
   timer.setInterval(300000L, sendData2GGSheet);  //ส่งค่าเซ็นเซอร์ขึ้น google sheet ทุกๆ 10 วินาที
 }
 //=================Setup Function===============//
@@ -397,6 +274,7 @@ void xymdtoNex() {
   uint8_t result1;
   float temp1 = (node1.getResponseBuffer(0) / 10.0f);
   float humi1 = (node1.getResponseBuffer(1) / 10.0f);
+
 
   Serial.println("Get XY-MD02 Data:");
   result1 = node1.readInputRegisters(0x0001, 2);  //Function 04, Read 2 registers starting at 2)
@@ -445,6 +323,7 @@ void xymdtoNex() {
 
   //Page 5 Guage XY-MD02
   int val1 = map(temp1, 0, 100, 0, 180);
+  
   Serial.print("z0.val=");  //Send the object tag
   Serial.print(val1);               //Send the value
   endNextionCommand();
@@ -454,34 +333,7 @@ void xymdtoNex() {
   Serial.print(val2);               //Send the value
   endNextionCommand();
 }
-//==============XY-MD02 to Nextion==============//
 
-// //=================LDRtoNextion=================//
-// void sendldrtoNex() {
-//   float ldr_percentage1;
-//   int sensor_analog1;
-//   sensor_analog1 = analogRead(INPUT_ldr);
-//   ldr_percentage1 = (100 - ((sensor_analog1 / 4095.00) * 100));
-
-//   Serial.print("LDR Percentage 1 = ");
-//   Serial.print(ldr_percentage1);
-//   Serial.print("%\n\n");
-
-//   //Page 6 Guage LDR
-//   String command3 = "textldr.txt=\"" + String(ldr_percentage1) + "\"";
-//   Serial.print(command3);
-//   endNextionCommand();
-
-//   String command4 = "textldr.txt=\"" + String(ldr_percentage1) + "\"";
-//   Serial.print(command4);
-//   endNextionCommand();
-
-//   int val = map(ldr_percentage1, 0, 100, 0, 222);
-//   Serial.print("guageldr.val=");  //Send the object tag
-//   Serial.print(val);              //Send the value
-//   endNextionCommand();
-// }
-// //=================LDRtoNextion=================//
 
 //=============SendData2GGSheet=================//
 void sendData2GGSheet() {
